@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     'store',
     'basket',
     'account',
-    'payment',
+    'checkout',
     'orders',
     'mptt',
 ]
@@ -100,7 +100,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 # Custom user model
-AUTH_USER_MODEL = 'account.UserBase'
+AUTH_USER_MODEL = 'account.Customer'
 LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGIN_URL = '/account/login/'
 
@@ -110,7 +110,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 BASKET_SESSION_ID = 'basket'
 
-os.environ.setdefault('STRIPE_PUBLISHABLE_KEY', 'pk_test_51LKvGACnhU5ZPryDMQxm2RRkbIMtplSt5Tl0Z1ann3840WCSrcEO6g5AB8Tsq07FsdaG9BgU7L5sKOmt1x4Rf9k100KYejx7dc')
-# STRIPE_SECRET_KEY = 'whsec_9ad7908f2f30300e9ea36910fbad4a80d41f2dddc5bd78eae20f389dc0fbb68e'
-PUBLISHABLE_KEY = 'pk_test_51LKvGACnhU5ZPryDMQxm2RRkbIMtplSt5Tl0Z1ann3840WCSrcEO6g5AB8Tsq07FsdaG9BgU7L5sKOmt1x4Rf9k100KYejx7dc'
-STRIPE_SECRET_KEY = 'sk_test_51LKvGACnhU5ZPryDrWGf9oexKOfVIGTS7P8D8uA15VpKKMVcMmC3kbM8tVwG4SqwcJTXqLvOa3AMVMCEUahygkPW00IVo2dlvQ'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

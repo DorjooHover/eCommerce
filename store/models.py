@@ -1,4 +1,5 @@
 
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -9,6 +10,7 @@ class Category(MPTTModel):
     """
     Category Table implimented with MPTT
     """
+    
     name = models.CharField(verbose_name=_('Category Name'), help_text=_("Required and unique"), max_length=255, unique=True)
     slug = models.SlugField(verbose_name=_("Category safe URL"), max_length=255, unique=True)
     parent = TreeForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name='children')
@@ -82,7 +84,7 @@ class Product(models.Model):
     is_active = models.BooleanField(verbose_name=_("Product visibility"), help_text=_("Change product visibility"), default=True)
     created_at = models.DateTimeField(_("Created at"), editable=False, auto_now_add=True)
     updated_at = models.DateTimeField(_("Updated at"),auto_now=True)
-
+    users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='users_wishlist', blank=True)
     # created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='product_creator')
     # author = models.CharField(max_length=255, default='admin')
     # image = models.ImageField(upload_to='images/', default='images/default.png')
